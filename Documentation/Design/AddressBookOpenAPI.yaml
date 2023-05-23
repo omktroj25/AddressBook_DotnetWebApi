@@ -1,0 +1,670 @@
+openapi: 3.0.3
+info:
+  version: "1.0"
+  title: Address Book API
+tags:
+  - name: AddressBookController
+    description: AddressBookAPI 
+paths:
+  /api/auth/signup:
+    post:
+      tags:
+        - AddressBookController
+      summary: Create the user to login
+      description: To signup using Username, Password & Confirm password
+      requestBody:
+        description: Define the http content type
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignupDto'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  description:
+                    type: string
+                    example: Created successfully
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: User name already exists or invalid value for a field
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+          
+  /api/auth/login:
+    post: 
+      tags:
+        - AddressBookController
+      summary: Send login details to the server
+      description: To login using Username & Password
+      requestBody:
+        description: Define the http content type
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginDto'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponseDto'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+ 
+  /api/meta-data/ref-set/{key}:
+    get:
+      tags:
+        - AddressBookController
+      security:
+        - bearerAuth: []
+      summary: Query the reference set metadata to retrieve the members
+      description: To fetch the refterm details with the refset
+      parameters:
+        - in: path
+          name: key
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetaResponseDto'
+        '401':
+          $ref: '#/components/responses/401'
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+
+  /api/address-book:
+    post:
+      tags: 
+        - AddressBookController
+      security:
+        - bearerAuth: [] 
+      summary: To create or add the addressbook by the user
+      description: To Create addressbook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddressBookDto'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  description:
+                    type: string
+                    example: Created successfully
+        '401':
+          $ref: '#/components/responses/401'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Email address already exists or invalid value for a field
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+    
+    get:
+      tags:
+        - AddressBookController
+      security:
+        - bearerAuth: []
+      summary: To view the list of addressbook added by the user
+      description: To Get all AddressBook
+      parameters:
+        - in: query
+          name: row-size
+          description: No of address books to be returned
+          schema:
+            type: integer
+          required: true
+        - in: query
+          name: start-index
+          description: Cursor position to fetch the address book
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AddressBookDto'
+        '401':
+          $ref: '#/components/responses/401'
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+    
+  /api/address-book/count:
+    get:
+      tags:
+        - AddressBookController
+      security:
+        - bearerAuth: []
+      summary: To show the number of addressbook created by the user
+      description: To Get total count of addressbook
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NumberOfAddressBookDto'
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+
+  /api/address-book/{address-book-id}:
+    get:
+      tags:
+        - AddressBookController
+      security:
+        - bearerAuth: []
+      summary: To view the specific addressbook requested by the user
+      description: To Get specific addressbook
+      parameters:
+          - in: path
+            name: address-book-id
+            description: Type specific ID of address book to display
+            schema:
+              type: string
+              format: uuid
+            required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpecificAddressBookDto'
+        '401':
+          $ref: '#/components/responses/401'
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+    
+    put:
+      tags: 
+        - AddressBookController
+      security:
+        - bearerAuth: [] 
+      summary: To update the added addressbook by the user
+      description: To update addressbook
+      parameters:
+        - in: path
+          name: address-book-id
+          description: ID of address book to update the details
+          schema:
+            type: string
+            format: uuid
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SpecificAddressBookDto'
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
+        '401':
+          $ref: '#/components/responses/401'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Email address already exists or invalid value for a field
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Metadata not found in the database
+        '500':
+          $ref: '#/components/responses/500'
+
+  /api/address-book/{id}:
+    delete:
+      tags:
+        - AddressBookController
+      description: To delete an AddressBook
+      summary: To remove the unwanted addressbook by the user
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          description: ID of the AddressBook to get the details
+          schema: 
+            type: string
+            format: uuid
+          required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: AddressBook deleted successfully
+        '401':
+          $ref: '#/components/responses/401'
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+
+  /api/asset:
+    post:
+      tags:
+        - AddressBookController
+      security:
+        - bearerAuth: []
+      summary: To upload the resources by the user
+      description: To uploade the image or any file and then map it to an account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UploadFileDto'
+      parameters:
+        - in: query
+          name: address-book-id
+          description: ID of the AddressBook
+          schema:
+            type: string
+            format: uuid
+          required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressBookIdToUploadDto'
+                
+        '401':
+          $ref: '#/components/responses/401'
+        '500':
+          $ref: '#/components/responses/500'
+  
+  /api/asset/{address-book-id}:
+    get:
+      tags:
+        - AddressBookController
+      summary: To download the required resources by the user
+      description: To download the file
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: address-book-id
+          description: ID of the Asset
+          schema:
+            type: string
+            format: uuid
+          required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DownloadFileDto'
+        '401':
+          $ref: '#/components/responses/401'
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500' 
+
+components:
+
+  securitySchemes:
+    bearerAuth:            
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+
+  schemas:
+    
+    SignupDto:
+      type: object
+      properties:
+        user_name:
+          type: string
+        password:
+          type: string
+        confirm_password:
+          type: string
+          
+    LoginDto:
+      type: object
+      properties:
+        user_name:
+          type: string
+        password:
+          type: string
+
+    TokenResponseDto:
+      type: object
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+          example: Bearer
+
+    MetaResponseDto:
+      type: array
+      items:
+        type: object
+        properties:
+          id: 
+            type: string
+            format: uuid
+          key:
+            type: string
+          description:
+            type: string
+
+    AddressBookDto:
+      type: object
+      properties:
+        first_name:
+          type: string
+          example: Balasuvramanian
+        last_name:
+          type: string
+          example: V
+        emails:
+          type: array
+          items:
+            type: object
+            properties:
+              email_address: 
+                type: string
+                example: vbalaas@gmail.com
+              type:
+                type: object
+                properties:
+                    key: 
+                      type: string
+                      example: PERSONAL
+        addresses:
+          type: array
+          items:
+            type: object
+            properties:
+              line1: 
+                type: string
+                example: 12131
+              line2: 
+                type: string
+                example: street
+              city: 
+                type: string
+                example: chennai
+              zipcode: 
+                type: string
+                example: 69991
+              state_name: 
+                type: string
+                example: TamilNadu
+              type:
+                type: object
+                properties:
+                    key: 
+                      type: string
+                      example: HOME
+              country:
+                type: object
+                properties:
+                    key: 
+                      type: string
+                      example: INDIA
+        phones:
+          type: array
+          items:
+            type: object
+            properties:
+              Phone_number: 
+                type: string
+                example: 9872981231
+              type:
+                type: object
+                properties:
+                    key: 
+                      type: string
+                      example: PERSONAL
+
+    SpecificAddressBookDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        first_name:
+          type: string
+          example: Balasuvramanian
+        last_name:
+          type: string
+          example: V
+        emails:
+          type: array
+          items:
+            type: object
+            properties:
+              email_address: 
+                type: string
+                example: vbalaas@gmail.com
+              type:
+                type: object
+                properties:
+                    key: 
+                      type: string
+                      example: PERSONAL
+        addresses:
+          type: array
+          items:
+            type: object
+            properties:
+              line1: 
+                type: string
+                example: 12131
+              line2: 
+                type: string
+                example: street
+              city: 
+                type: string
+                example: chennai
+              zipcode: 
+                type: string
+                example: 69991
+              state_name: 
+                type: string
+                example: TamilNadu
+              type:
+                type: object
+                properties:
+                    key: 
+                      type: string
+                      example: HOME
+              country:
+                type: object
+                properties:
+                    key: 
+                      type: string
+                      example: INDIA
+        phones:
+          type: array
+          items:
+            type: object
+            properties:
+              Phone_number: 
+                type: string
+                example: 9872981231
+              type:
+                type: object
+                properties:
+                    key: 
+                      type: string
+                      example: PERSONAL
+    NumberOfAddressBookDto:
+      type: object
+      properties:
+        count:
+          type: integer
+
+    UploadFileDto:
+      type: object
+      properties:
+        file_name:
+          type: string
+        file:
+          type: string
+
+    AddressBookIdToUploadDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+
+    DownloadFileDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        file_name:
+          type: string
+        file_type:
+          type: string
+        file_content:
+          type: string
+    
+    ResponseDto:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        description:
+          type: string
+
+  responses:
+  
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ResponseDto'
+          example:
+            code: 200
+            message: Successfully completed
+            
+    401:
+      description: Unauthorized access
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ResponseDto'
+          example:
+            code: 401
+            message: Invalid credentials
+            descritption: Please type the valid credentials
+
+    404:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ResponseDto'
+          example:
+            code: 404
+            message: Not found
+            description: The resource not found
+
+    409:
+      description: Resource already exists
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ResponseDto'
+          example:
+            code: 409
+            message: Already exists
+            description: The value given already exists
+
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ResponseDto'
+          example:
+            code: 500
+            message: Internal server error
+            description: An unexpected error occurred
+

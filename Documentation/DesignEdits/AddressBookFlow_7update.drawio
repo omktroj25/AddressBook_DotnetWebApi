@@ -1,0 +1,220 @@
+<mxfile host="app.diagrams.net" modified="2023-03-26T19:02:08.416Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36" etag="5A9dsmmHENdp64f5vo-o" version="21.1.1" type="device">
+  <diagram name="Page-1" id="JCEGxdFOgvOAtDUVBZYm">
+    <mxGraphModel dx="280" dy="313" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="HDsGMQWWcjxy8k_yasPS-3" value="Start&lt;br&gt;&lt;b&gt;/api/address-book/{address-book-id}&lt;/b&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_2;whiteSpace=wrap;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="366" y="143" width="300" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-1" value="&lt;b&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;Update Address Book API&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="356" y="70" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-2" value="&lt;b&gt;is &lt;br&gt;authorized?&lt;/b&gt;" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="457.5" y="333" width="117.5" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-3" value="&lt;b&gt;User input&lt;/b&gt;&lt;br&gt;ID of the address &lt;br&gt;book to update&lt;b&gt;&amp;nbsp;&lt;/b&gt;&lt;br&gt;id: UUID" style="shape=parallelogram;html=1;strokeWidth=2;perimeter=parallelogramPerimeter;whiteSpace=wrap;rounded=1;arcSize=12;size=0.23;" parent="1" vertex="1">
+          <mxGeometry x="428.25" y="480" width="177.5" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-4" value="&lt;b&gt;Response code: 401&lt;/b&gt;&lt;br&gt;Unauthorized user" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="690" y="343" width="130" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-5" value="&lt;b&gt;Validate&lt;/b&gt;&amp;nbsp;&lt;br&gt;is the address &lt;br&gt;book exists?" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="462" y="603" width="110" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-6" value="&lt;b&gt;Response code: 404&lt;/b&gt;&lt;br&gt;Address book Not found" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="637" y="630" width="133" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-7" value="&lt;b&gt;Path&lt;/b&gt;&lt;br&gt;Proceed to update the selected address book in the database" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="185" y="624" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-8" value="&lt;span&gt;Response code: 200&lt;br&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;Address book updated successfully&lt;/span&gt;&lt;br&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="172" y="916" width="196" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-9" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="HDsGMQWWcjxy8k_yasPS-3" target="LmpnqmgkDvMuk_CpLRpN-2" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="515" y="253" as="sourcePoint" />
+            <mxPoint x="500" y="473" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-10" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="LmpnqmgkDvMuk_CpLRpN-2" target="LmpnqmgkDvMuk_CpLRpN-3" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="450" y="523" as="sourcePoint" />
+            <mxPoint x="500" y="473" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-11" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="LmpnqmgkDvMuk_CpLRpN-3" target="LmpnqmgkDvMuk_CpLRpN-5" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="450" y="523" as="sourcePoint" />
+            <mxPoint x="500" y="473" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-12" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="LmpnqmgkDvMuk_CpLRpN-5" target="LmpnqmgkDvMuk_CpLRpN-7" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="450" y="494" as="sourcePoint" />
+            <mxPoint x="500" y="444" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-15" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="LmpnqmgkDvMuk_CpLRpN-2" target="LmpnqmgkDvMuk_CpLRpN-4" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="450" y="523" as="sourcePoint" />
+            <mxPoint x="500" y="473" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-16" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="LmpnqmgkDvMuk_CpLRpN-5" target="LmpnqmgkDvMuk_CpLRpN-6" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="450" y="494" as="sourcePoint" />
+            <mxPoint x="500" y="444" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-17" value="Credentials&lt;br&gt;Not valid" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="620" y="343" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-18" value="Success" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="515" y="433" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-19" value="&lt;b&gt;Response code: 500&lt;/b&gt;&lt;br&gt;Internal server error" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="23" y="343" width="137" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-20" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="LmpnqmgkDvMuk_CpLRpN-2" target="LmpnqmgkDvMuk_CpLRpN-19" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="640" y="613" as="sourcePoint" />
+            <mxPoint x="690" y="563" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-22" value="&lt;b&gt;Stop&lt;/b&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="492" y="1006" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-23" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.423;exitY=1.049;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="LmpnqmgkDvMuk_CpLRpN-25" target="LmpnqmgkDvMuk_CpLRpN-22" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="520" y="870" as="sourcePoint" />
+            <mxPoint x="517.0000000000002" y="842" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-24" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.205;entryY=-0.008;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="LmpnqmgkDvMuk_CpLRpN-5" target="LmpnqmgkDvMuk_CpLRpN-25" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="517" y="703" as="sourcePoint" />
+            <mxPoint x="517" y="842" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-25" value="&lt;b&gt;Response code: 500&lt;/b&gt;&lt;br&gt;Internal server error" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="490" y="800" width="120" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-28" value="Success" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="392" y="624" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-29" value="Invalid address book id" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="569" y="613" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-30" value="Internal error" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="310" y="343" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-31" value="Internal errot" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="511" y="724" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-32" value="PUT" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="518.25" y="283" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-33" value="Request with&lt;br&gt;JWT Access Token &amp;amp; ID of address book" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="420" y="283" width="98.25" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-34" value="&lt;b&gt;User input&lt;/b&gt;&lt;br&gt;Get the new data from user to update in the address book" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
+          <mxGeometry x="175" y="716" width="190" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-35" value="&lt;b&gt;Validate&lt;/b&gt;&lt;br&gt;new data doesn&#39;t exist in the database&amp;nbsp;" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="201" y="786" width="138" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-36" value="&lt;b&gt;Response code: 409&lt;/b&gt;&lt;br&gt;Data already exist" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="50" y="804" width="120" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-37" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="LmpnqmgkDvMuk_CpLRpN-7" target="LmpnqmgkDvMuk_CpLRpN-34" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="380" y="890" as="sourcePoint" />
+            <mxPoint x="430" y="840" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-38" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="LmpnqmgkDvMuk_CpLRpN-34" target="LmpnqmgkDvMuk_CpLRpN-35" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="380" y="890" as="sourcePoint" />
+            <mxPoint x="430" y="840" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-39" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;edgeStyle=elbowEdgeStyle;" parent="1" source="LmpnqmgkDvMuk_CpLRpN-50" target="LmpnqmgkDvMuk_CpLRpN-22" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="380" y="890" as="sourcePoint" />
+            <mxPoint x="430" y="840" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="419" y="950" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-40" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="LmpnqmgkDvMuk_CpLRpN-35" target="LmpnqmgkDvMuk_CpLRpN-36" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="380" y="890" as="sourcePoint" />
+            <mxPoint x="430" y="840" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-41" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="LmpnqmgkDvMuk_CpLRpN-35" target="LmpnqmgkDvMuk_CpLRpN-8" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="380" y="890" as="sourcePoint" />
+            <mxPoint x="430" y="840" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-42" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;edgeStyle=orthogonalEdgeStyle;" parent="1" source="LmpnqmgkDvMuk_CpLRpN-36" target="LmpnqmgkDvMuk_CpLRpN-22" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="380" y="890" as="sourcePoint" />
+            <mxPoint x="430" y="840" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-43" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;edgeStyle=orthogonalEdgeStyle;" parent="1" source="LmpnqmgkDvMuk_CpLRpN-8" target="LmpnqmgkDvMuk_CpLRpN-22" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="380" y="890" as="sourcePoint" />
+            <mxPoint x="430" y="840" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-44" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;edgeStyle=elbowEdgeStyle;" parent="1" source="LmpnqmgkDvMuk_CpLRpN-6" target="LmpnqmgkDvMuk_CpLRpN-22" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="340" y="870" as="sourcePoint" />
+            <mxPoint x="390" y="820" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="697" y="850" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-45" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;edgeStyle=elbowEdgeStyle;" parent="1" source="LmpnqmgkDvMuk_CpLRpN-4" target="LmpnqmgkDvMuk_CpLRpN-22" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="340" y="870" as="sourcePoint" />
+            <mxPoint x="390" y="820" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="793" y="720" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-46" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;edgeStyle=elbowEdgeStyle;" parent="1" source="LmpnqmgkDvMuk_CpLRpN-19" target="LmpnqmgkDvMuk_CpLRpN-22" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="340" y="870" as="sourcePoint" />
+            <mxPoint x="390" y="820" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="40" y="740" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-47" value="Conflict" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="170" y="796" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-48" value="Not &lt;br&gt;found" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="301" y="783" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-51" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="LmpnqmgkDvMuk_CpLRpN-35" target="LmpnqmgkDvMuk_CpLRpN-50" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="339" y="826" as="sourcePoint" />
+            <mxPoint x="490" y="827" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LmpnqmgkDvMuk_CpLRpN-50" value="&lt;b&gt;Response code: 404&lt;br&gt;&lt;/b&gt;Metadata not found" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="360" y="803" width="120" height="46" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
